@@ -10,25 +10,31 @@ on:
 
 jobs:
   build:
+    strategy:
+      matrix: 
+        release: [35, 36, 37]
     runs-on: ubuntu-latest
     container: 
       image: ghcr.io/nickcmaynard/coreos-rpi-efi-extras:latest
       volumes:
         - ${{ github.workspace }}:/output
     steps:
-      - name: Run Fedora 35 build process
-        run: RELEASE=35 /app/build.sh
-      - name: Run Fedora 36 build process
-        run: RELEASE=36 /app/build.sh
-      - name: Run Fedora 37 build process
-        run: RELEASE=37 /app/build.sh
-      - name: Get current date
-        id: date
-        run: echo "::set-output name=date::$(date +"%Y-%m-%d_%H-%M")"
+      - name: Run build process
+        run: RELEASE=${{ matrix.release }} /app/build.sh
+      - name: Upload artifact to release
+        uses: actions/checkout@v2
+        with:
+          name: my-artifact
+          path: coreos-rpi-efi-extras_*.zip
   release:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Download artifacts from build
+        uses: actions/download-artifact@v3
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +"%Y-%m-%d_%H-%M")"
       - name: Upload the release files
         uses: softprops/action-gh-release@v1
         with:
