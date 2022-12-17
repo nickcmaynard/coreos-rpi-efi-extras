@@ -26,6 +26,6 @@ jobs:
                 RELEASE=37 /app/build.sh
       - name: Release
         uses: softprops/action-gh-release@v1
-        name: ${{ steps.date.outputs.date }}
         with:
+          name: ${{ steps.date.outputs.date }}
           files: ${{ github.workspace }}/**
