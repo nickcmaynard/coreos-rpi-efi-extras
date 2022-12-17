@@ -1,6 +1,6 @@
 FROM fedora:latest
 
-RUN dnf install -y zip rpm cpio
+RUN dnf install --repo=fedora -y zip rpm cpio
 
 # This is where the ZIP will be placed
 RUN mkdir /output
