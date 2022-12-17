@@ -6,6 +6,7 @@ In essence, extra files need to be inserted into the coreos-installer EFI boot p
 You can build a ZIP of these files yourself (see source) or use the generated ZIP files hosted on Github.
 
 ## Usage
+
 Several options exist.
 
 ### Container image - self-built
