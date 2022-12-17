@@ -4,7 +4,7 @@ set -e
 
 # Download the RPMs
 echo Downloading RPMs
-mkdir /tmp/packages
+mkdir -p /tmp/packages
 cd /tmp/packages
 dnf install -y --downloadonly --release=$RELEASE --forcearch=aarch64 --destdir=/tmp/packages/  uboot-images-armv8 bcm283x-firmware bcm283x-overlays
 
