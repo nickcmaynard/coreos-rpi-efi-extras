@@ -22,9 +22,8 @@ jobs:
       - name: Run build process
         run: RELEASE=${{ matrix.release }} /app/build.sh
       - name: Upload artifact to release
-        uses: actions/checkout@v2
+        uses: actions/upload-artifact@v3
         with:
-          name: my-artifact
           path: ${{ github.workspace }}/coreos-rpi-efi-extras_*.zip
   release:
     needs: build
