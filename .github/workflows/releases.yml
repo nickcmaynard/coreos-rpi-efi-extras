@@ -26,6 +26,7 @@ jobs:
         id: date
         run: echo "::set-output name=date::$(date +"%Y-%m-%d_%H-%M")"
   release:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Upload the release files
