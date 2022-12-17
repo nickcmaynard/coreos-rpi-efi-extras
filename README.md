@@ -6,7 +6,9 @@ In essence, extra files need to be inserted into the coreos-installer EFI boot p
 You can build a ZIP of these files yourself (see source) or use the generated ZIP files hosted on Github.
 
 ## Usage
-Several options exist.
+Several options exist (see below) - all will create a ZIP file for your chosen release, ie. `coreos-rpi-efi-extras_RELEASE.zip`.
+
+Simply copy the *contents* of this ZIP file to the EFI partition on the disk you targeted with coreos-installer.
 
 ### Download the ZIP file for your CoreOS release
 Nightly builds are here [Releases](https://github.com/nickcmaynard/coreos-rpi-efi-extras/releases).
