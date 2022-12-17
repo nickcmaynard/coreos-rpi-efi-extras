@@ -1,0 +1,32 @@
+name: Build releases
+
+# Controls when the workflow will run
+on:
+  workflow_dispatch:
+  on:
+    registry_package:
+      types: [published]
+    schedule:
+      - cron:  '0 0 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date -Iseconds)"
+      - name: Run the build process with Docker
+        uses: addnab/docker-run-action@v3
+        with:
+            image: ghcr.io/nickcmaynard/coreos-rpi-efi-extras:latest
+            options: -v ${{ github.workspace }}:/output
+            run: |
+                RELEASE=35 /app/build.sh
+                RELEASE=36 /app/build.sh
+                RELEASE=37 /app/build.sh
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        name: ${{ steps.date.outputs.date }}
+        with:
+          files: ${{ github.workspace }}/**
