@@ -11,6 +11,7 @@ dnf install -y --downloadonly --release=$RELEASE --forcearch=aarch64 --destdir=/
 
 # Extract some files
 echo Extracting files from the RPMs
+rm -rf /tmp/rpiboot/boot/efi/
 mkdir -p /tmp/rpiboot/boot/efi/
 for rpm in /tmp/packages/*rpm; do rpm2cpio $rpm | cpio -idv -D /tmp/rpiboot/; done
 
