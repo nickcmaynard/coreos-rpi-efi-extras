@@ -2,16 +2,18 @@
 
 set -e
 
+# Clean prior runs working files
+rm -rf /tmp/packages
+rm -rf /tmp/rpiboot
+
 # Download the RPMs
 echo Downloading RPMs
-rm -rf /tmp/packages
 mkdir -p /tmp/packages
 cd /tmp/packages
 dnf install -y --downloadonly --release=$RELEASE --forcearch=aarch64 --destdir=/tmp/packages/  uboot-images-armv8 bcm283x-firmware bcm283x-overlays
 
 # Extract some files
 echo Extracting files from the RPMs
-rm -rf /tmp/rpiboot/boot/efi/
 mkdir -p /tmp/rpiboot/boot/efi/
 for rpm in /tmp/packages/*rpm; do rpm2cpio $rpm | cpio -idv -D /tmp/rpiboot/; done
 
