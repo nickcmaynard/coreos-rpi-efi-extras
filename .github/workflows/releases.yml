@@ -13,7 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     container: 
       image: ghcr.io/nickcmaynard/coreos-rpi-efi-extras:latest
-      volumes: ${{ github.workspace }}:/output
+      volumes:
+        - ${{ github.workspace }}:/output
     steps:
       - name: Run Fedora 35 build process
         run: RELEASE=35 /app/build.sh
