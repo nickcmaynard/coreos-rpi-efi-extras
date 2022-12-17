@@ -15,7 +15,7 @@ dnf install -y --downloadonly --release=$RELEASE --forcearch=aarch64 --destdir=/
 # Extract some files
 echo Extracting files from the RPMs
 mkdir -p /tmp/rpiboot/boot/efi/
-for rpm in /tmp/packages/*rpm; do rpm2cpio $rpm | cpio -idv -D /tmp/rpiboot/; done
+for rpm in /tmp/packages/*rpm; do rpm2cpio $rpm | cpio -id -D /tmp/rpiboot/; done
 
 mv /tmp/rpiboot/usr/share/uboot/rpi_4/u-boot.bin /tmp/rpiboot/boot/efi/rpi4-u-boot.bin
 mv /tmp/rpiboot/usr/share/uboot/rpi_3/u-boot.bin /tmp/rpiboot/boot/efi/rpi3-u-boot.bin
@@ -23,5 +23,5 @@ mv /tmp/rpiboot/usr/share/uboot/rpi_3/u-boot.bin /tmp/rpiboot/boot/efi/rpi3-u-bo
 # ZIP them up into the output directory
 echo Zipping files
 cd /tmp/rpiboot/boot/efi
-zip -r /tmp/coreos-rpi-efi-extras_$RELEASE.zip .
+zip -qr /tmp/coreos-rpi-efi-extras_$RELEASE.zip .
 cp /tmp/coreos-rpi-efi-extras_$RELEASE.zip /output
