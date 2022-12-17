@@ -35,5 +35,6 @@ jobs:
         with:
           keep_latest: 7
           delete_tag_pattern: nightly_build
+          delete_tags: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
