@@ -39,7 +39,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: nightly_build_${{ steps.date.outputs.date }}
-          files: ${{ github.workspace }}/coreos-rpi-efi-extras_*.zip
+          files: ${{ github.workspace }}/**/coreos-rpi-efi-extras_*.zip
       - name: Delete old nightly releases
         uses: dev-drprasad/delete-older-releases@v0.2.0
         with:
