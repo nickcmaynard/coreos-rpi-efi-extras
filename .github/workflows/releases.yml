@@ -24,6 +24,7 @@ jobs:
       - name: Upload artifact to release
         uses: actions/upload-artifact@v3
         with:
+          name: release_${{ matrix.release }}
           path: ${{ github.workspace }}/coreos-rpi-efi-extras_*.zip
   release:
     needs: build
