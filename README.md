@@ -1,9 +1,13 @@
 # coreos-rpi-efi-extras
-This project contains files to assist with installing Fedora CoreOS on a Raspberry Pi 3 or 4, per https://docs.fedoraproject.org/en-US/fedora-coreos/provisioning-raspberry-pi4/
+This project contains files to assist with installing Fedora CoreOS on a Raspberry Pi 4, per https://docs.fedoraproject.org/en-US/fedora-coreos/provisioning-raspberry-pi4/
 
 In essence, extra files need to be inserted into the coreos-installer EFI boot partition to make it boot.
 
 You can build a ZIP of these files yourself (see source) or use the generated ZIP files hosted on Github.
+
+NB. I originally wrote this to assist with installing an rpi3 - I don't have an rpi4.  I can't make the rpi3 boot work - something about the SD card structure created by coreos-installer isn't working with my rpi3.  Thus, here's the current status:
+  * rpi4 - *should* work - please let me know if it does!
+  * rpi3 - doesn't work for unknown reasons - please send a PR/doc updates if you can make it work!
 
 ## Usage
 Several options exist (see below) - all will create a ZIP file for your chosen release, ie. `coreos-rpi-efi-extras_RELEASE.zip`.
