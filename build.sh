@@ -10,7 +10,10 @@ rm -rf /tmp/rpiboot
 echo Downloading RPMs
 mkdir -p /tmp/packages
 cd /tmp/packages
-dnf install -y --downloadonly --release=$RELEASE --forcearch=aarch64 --destdir=/tmp/packages/  uboot-images-armv8 bcm283x-firmware bcm283x-overlays
+if (( $RELEASE <= $LATEST_ARCHIVED_RELEASE )); then
+    ARCHIVED_RELEASE_REPOS="--disablerepo=updates --disablerepo=updates-modular --enablerepo=updates-archive"
+fi
+dnf install -y --downloadonly --release=$RELEASE ${ARCHIVED_RELEASE_REPOS} --forcearch=aarch64 --destdir=/tmp/packages/  uboot-images-armv8 bcm283x-firmware bcm283x-overlays
 
 # Extract some files
 echo Extracting files from the RPMs
