@@ -21,30 +21,18 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Docker meta
-      id: meta_ccr # you'll use this in the next step
-      uses: docker/metadata-action@v3
-      with:
-        # list of Docker images to use as base name for tags
-        images: |
-          ghcr.io/nickcmaynard/coreos-rpi-efi-extras
-        # Docker tags based on the following events/attributes
-        tags: |
-          type=schedule
-          type=ref,event=branch
-          type=ref,event=pr
-          type=semver,pattern={{version}}
-          type=semver,pattern={{major}}.{{minor}}
-          type=semver,pattern={{major}}
-          type=sha
-          type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', github.event.repository.default_branch) }}
+    - name: Compute short SHA
+      run: echo "SHORT_SHA=`git rev-parse --short HEAD`" >> $GITHUB_ENV
 
     - name: Build
       id: build-image
       uses: redhat-actions/buildah-build@v2
       with:
         image: coreos-rpi-efi-extras
-        tags: ${{ steps.meta_ccr.outputs.tags }}
+        tags: |
+          ghcr.io/nickcmaynard/coreos-rpi-efi-extras:latest 
+          ghcr.io/nickcmaynard/coreos-rpi-efi-extras:${{GITHUB_REF_NAME}}
+          ghcr.io/nickcmaynard/coreos-rpi-efi-extras:sha-${{SHORT_SHA}}
         containerfiles: |
           ./Containerfile
         platforms: linux/amd64
