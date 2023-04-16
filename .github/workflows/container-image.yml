@@ -32,7 +32,7 @@ jobs:
         tags: |
           ghcr.io/nickcmaynard/coreos-rpi-efi-extras:latest 
           ghcr.io/nickcmaynard/coreos-rpi-efi-extras:${{github.ref_name}}
-          ghcr.io/nickcmaynard/coreos-rpi-efi-extras:sha-$SHORT_SHA
+          ghcr.io/nickcmaynard/coreos-rpi-efi-extras:sha-${{env.SHORT_SHA}}
         containerfiles: |
           ./Containerfile
         platforms: linux/amd64
