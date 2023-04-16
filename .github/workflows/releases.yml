@@ -3,10 +3,8 @@ name: Build releases
 # Controls when the workflow will run
 on:
   workflow_dispatch:
-  registry_package:
-    types: [published]
   schedule:
-    - cron:  '0 0 * * *'
+    - cron:  '0 1 * * *'
 
 jobs:
   build:

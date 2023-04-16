@@ -1,4 +1,4 @@
-name: Build docker image
+name: Build container image
 
 # Controls when the workflow will run
 on:
@@ -8,6 +8,8 @@ on:
       - 'master'
     tags:
       - 'v*.*.*'
+  schedule:
+    - cron:  '0 0 * * *'
 
 # permissions are needed if pushing to ghcr.io
 permissions: 
