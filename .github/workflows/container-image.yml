@@ -31,8 +31,8 @@ jobs:
         image: coreos-rpi-efi-extras
         tags: |
           ghcr.io/nickcmaynard/coreos-rpi-efi-extras:latest 
-          ghcr.io/nickcmaynard/coreos-rpi-efi-extras:${{GITHUB_REF_NAME}}
-          ghcr.io/nickcmaynard/coreos-rpi-efi-extras:sha-${{SHORT_SHA}}
+          ghcr.io/nickcmaynard/coreos-rpi-efi-extras:${{github.ref_name}}
+          ghcr.io/nickcmaynard/coreos-rpi-efi-extras:sha-$SHORT_SHA
         containerfiles: |
           ./Containerfile
         platforms: linux/amd64
