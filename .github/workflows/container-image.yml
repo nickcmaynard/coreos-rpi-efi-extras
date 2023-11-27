@@ -39,7 +39,11 @@ jobs:
           ./Containerfile
         platforms: linux/amd64
         context: .
-
+  
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
     - name: Push to GHCR
       id: push-to-ghcr
       uses: redhat-actions/push-to-registry@v2
