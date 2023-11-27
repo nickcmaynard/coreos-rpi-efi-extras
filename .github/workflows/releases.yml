@@ -39,7 +39,7 @@ jobs:
           tag_name: nightly_build_${{ steps.date.outputs.date }}
           files: ${{ github.workspace }}/**/coreos-rpi-efi-extras_*.zip
       - name: Delete old nightly releases
-        uses: dev-drprasad/delete-older-releases@v0.2.0
+        uses: dev-drprasad/delete-older-releases@v0.3.2
         with:
           keep_latest: 7
           delete_tag_pattern: nightly_build
