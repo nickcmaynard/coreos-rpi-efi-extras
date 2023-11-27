@@ -10,7 +10,7 @@ WORKDIR /app
 COPY build.sh build.sh
 RUN chmod 700 build.sh
 
-ENV RELEASE=37
+ENV RELEASE=38
 ENV LATEST_ARCHIVED_RELEASE=35
 
 ENTRYPOINT /app/build.sh
