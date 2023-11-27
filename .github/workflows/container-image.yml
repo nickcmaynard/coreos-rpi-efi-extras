@@ -22,10 +22,9 @@ jobs:
     # Get the repository's code
     - name: Checkout
       uses: actions/checkout@v2
-
     - name: Compute short SHA
-      run: echo "SHORT_SHA=`git rev-parse --short HEAD`" >> $GITHUB_ENV
-
+      id: sha
+      run: echo "SHORT_SHA=`git rev-parse --short HEAD`" >> $GITHUB_OUTPUT
     - name: Build
       id: build-image
       uses: redhat-actions/buildah-build@v2
@@ -33,12 +32,15 @@ jobs:
         image: coreos-rpi-efi-extras
         tags: |
           ghcr.io/nickcmaynard/coreos-rpi-efi-extras:latest 
-          ghcr.io/nickcmaynard/coreos-rpi-efi-extras:${{github.ref_name}}
-          ghcr.io/nickcmaynard/coreos-rpi-efi-extras:sha-${{env.SHORT_SHA}}
+          ghcr.io/nickcmaynard/coreos-rpi-efi-extras:${{ github.ref_name }}
+          ghcr.io/nickcmaynard/coreos-rpi-efi-extras:sha-${{ steps.sha.outputs.SHORT_SHA }}
         containerfiles: |
           ./Containerfile
         platforms: linux/amd64
         context: .
+    outputs:
+      image: ${{ steps.build-image.outputs.image }}
+      tags: ${{ steps.build-image.outputs.tags }}
   
   release:
     needs: build
@@ -48,8 +50,8 @@ jobs:
       id: push-to-ghcr
       uses: redhat-actions/push-to-registry@v2
       with:
-        image: ${{ steps.build-image.outputs.image }}
-        tags: ${{ steps.build-image.outputs.tags }}
+        image: ${{ needs.build.outputs.image }}
+        tags: ${{ needs.build.outputs.tags }}
         registry: ghcr.io
         username: ${{ github.repository_owner }}
         password: ${{ secrets.GITHUB_TOKEN }}
