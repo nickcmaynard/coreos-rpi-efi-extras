@@ -10,7 +10,7 @@ jobs:
   build:
     strategy:
       matrix: 
-        release: [36, 37, 38, 39, 40]
+        release: [36, 37, 38, 39]
     runs-on: ubuntu-latest
     container: 
       image: ghcr.io/nickcmaynard/coreos-rpi-efi-extras:latest
