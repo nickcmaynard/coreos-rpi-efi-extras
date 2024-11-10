@@ -1,5 +1,5 @@
 # we need full-fat dnf in build.sh when *running the container*, so fedora rather than fedora-minimal
-FROM registry.fedoraproject.org/fedora:latest
+FROM registry.fedoraproject.org/fedora:40
 
 RUN dnf install --repo=fedora --repo=updates -y zip rpm cpio fedora-repos-archive && dnf clean all
 
