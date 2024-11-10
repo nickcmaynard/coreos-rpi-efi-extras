@@ -1,5 +1,7 @@
 # coreos-rpi-efi-extras
-This project contains files to assist with installing Fedora CoreOS on a Raspberry Pi 4, per https://docs.fedoraproject.org/en-US/fedora-coreos/provisioning-raspberry-pi4/
+This project contains files to assist with installing Fedora CoreOS <= 39 on a Raspberry Pi 4, per https://docs.fedoraproject.org/en-US/fedora-coreos/provisioning-raspberry-pi4/
+
+NOTE: With Fedora 40, the instructions have changed.  With no evidence that this project is used, it shall not be updated further.
 
 In essence, extra files need to be inserted into the coreos-installer EFI boot partition to make it boot.
 

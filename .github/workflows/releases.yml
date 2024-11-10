@@ -10,6 +10,8 @@ jobs:
   build:
     strategy:
       matrix: 
+        # NOTE: Fedora 40 does *not* work as there are changed files for build.sh
+        # NOTE: Fedora 41 does *not* work as can't install --release
         release: [36, 37, 38, 39]
     runs-on: ubuntu-latest
     container: 
