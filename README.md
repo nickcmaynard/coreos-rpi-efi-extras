@@ -1,7 +1,7 @@
 # coreos-rpi-efi-extras
 
-![https://github.com/nickcmaynard/coreos-rpi-efi-extras/actions/workflows/releases.yml](https://github.com/nickcmaynard/coreos-rpi-efi-extras/actions/workflows/releases.yml/badge.svg)
-![https://github.com/nickcmaynard/coreos-rpi-efi-extras/actions/workflows/container-image.yml](https://github.com/nickcmaynard/coreos-rpi-efi-extras/actions/workflows/container-image.yml/badge.svg)
+![https://github.com/nickcmaynard/coreos-rpi-efi-extras/actions/workflows/releases.yml/badge.svg](https://github.com/nickcmaynard/coreos-rpi-efi-extras/actions/workflows/releases.yml)
+![https://github.com/nickcmaynard/coreos-rpi-efi-extras/actions/workflows/container-image.yml/badge.svg](https://github.com/nickcmaynard/coreos-rpi-efi-extras/actions/workflows/container-image.yml)
 
 This project contains files to assist with installing Fedora CoreOS <= 39 on a Raspberry Pi 4, per https://docs.fedoraproject.org/en-US/fedora-coreos/provisioning-raspberry-pi4/
 
